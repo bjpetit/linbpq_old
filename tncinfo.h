@@ -115,6 +115,7 @@ struct TCPINFO
 	int DRATSPort;
 	int CMDPort[33];
 	char RELAYHOST[64];
+	int RELAYPORT;
 	char CMSServer[64];
 	BOOL FallbacktoRelay;		// Use Relsy if can't connect to CMS
 
