@@ -120,13 +120,18 @@ char Mycall[10];
 char MAILPipeFileName[] = "\\\\.\\pipe\\BPQMAILWebPipe";
 char CHATPipeFileName[] = "\\\\.\\pipe\\BPQCHATWebPipe";
 
-char Index[] = "<html><head><title>%s's BPQ32 Web Server</title></head><body><P align=center>"
+char Index[] = "<html><head>"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"<title>%s's BPQ32 Web Server</title></head><body><P align=center>"
 "<table border=2 cellpadding=2 cellspacing=2 bgcolor=white>"
 "<tr><td align=center><a href=/Node/NodeMenu.html>Node Pages</a></td>"
 "<td align=center><a href=/aprs>APRS Pages</a></td></tr></table></body></html>";
 
-char IndexNoAPRS[] = "<meta http-equiv=\"refresh\" content=\"0;url=/Node/NodeIndex.html\">"
-"<html><head></head><body></body></html>";
+char IndexNoAPRS[] = 
+"<html><head>"
+"<meta http-equiv=\"refresh\" content=\"0;url=/Node/NodeIndex.html\">"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"</head><body></body></html>";
 
 //char APRSBit[] = "<td><a href=../aprs>APRS Pages</a></td>";
 
@@ -188,7 +193,8 @@ char UserHddr[] = "<h2 align=center>Sessions</h2><table align=center border=2 ce
 
 char UserLine[] = "<tr><td>%s</td><td>%s</td><td>%s</td></tr>";
 
-char TermSignon[] = "<html><head><title>BPQ32 Node %s Terminal Access</title></head><body background=\"/background.jpg\">"
+char TermSignon[] = "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"<title>BPQ32 Node %s Terminal Access</title></head><body background=\"/background.jpg\">"
 "<h2 align=center>BPQ32 Node %s Terminal Access</h2>"
 "<h3 align=center>Please enter username and password to access the node</h3>"
 "<form method=post action=TermSignon>"
@@ -207,6 +213,7 @@ char LostSession[] = "<html><body>Sorry, Session had been lost - refresh page to
 char NoSessions[] = "<html><body>Sorry, No Sessions available - refresh page to try again";
 
 char TermPage[] = "<!DOCTYPE html><html><meta http-equiv=Content-Type content='text/html; charset=UTF-8' />"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 "<head><title>BPQ32 Node %s</title></head>"
 "<script>function resize(){"
 "var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0];"
@@ -227,6 +234,7 @@ char TermOutput[] = "<!DOCTYPE html><html><head>"
 "<meta http-equiv=pragma content=no-cache>"
 "<meta http-equiv=expires content=0>" 
 "<meta http-equiv=refresh content=2>"
+// "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 "<script type=\"text/javascript\">\r\n"
 "function ScrollOutput()\r\n"
 "{window.scrollBy(0,document.body.scrollHeight)}</script>"
@@ -259,7 +267,9 @@ char InputLine[] = "<!DOCTYPE html><html><head></head><body onload='resize()' on
 "var inp=document.getElementById('inp');"
 "inp.style.width=x-20+'px';}</script></form>";
 
-static char NodeSignon[] = "<html><head><title>BPQ32 Node SYSOP Access</title></head><body background=\"/background.jpg\">"
+static char NodeSignon[] = "<html>"
+"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"<title>BPQ32 Node SYSOP Access</title></head><body background=\"/background.jpg\">"
 "<h3 align=center>BPQ32 Node %s SYSOP Access</h3>"
 "<h3 align=center>This page sets Cookies. Don't continue if you object to this</h3>"
 "<h3 align=center>Please enter Callsign and Password to access the Node</h3>"
@@ -270,7 +280,9 @@ static char NodeSignon[] = "<html><head><title>BPQ32 Node SYSOP Access</title></
 "<p align=center><input type=submit class='btn' value=Submit /><input type=submit class='btn' value=Cancel name=Cancel /></form>";
 
 
-static char MailSignon[] = "<html><head><title>BPQ32 Mail Server Access</title></head><body background=\"/background.jpg\">"
+static char MailSignon[] = "<html><head>"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"<title>BPQ32 Mail Server Access</title></head><body background=\"/background.jpg\">"
 "<h3 align=center>BPQ32 Mail Server %s Access</h3>"
 "<h3 align=center>Please enter Callsign and Password to access the BBS</h3>"
 "<form method=post action=/Mail/Signon?Mail>"
@@ -279,7 +291,9 @@ static char MailSignon[] = "<html><head><title>BPQ32 Mail Server Access</title><
 "<tr><td>Password</td><td><input type=password name=password tabindex=2 size=20 maxlength=50 /></td></tr></table>"  
 "<p align=center><input type=submit class='btn' value=Submit /><input type=submit class='btn' value=Cancel name=Cancel /></form>";
 
-static char ChatSignon[] = "<html><head><title>BPQ32 Chat Server Access</title></head><body background=\"/background.jpg\">"
+static char ChatSignon[] = "<html><head>"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"<title>BPQ32 Chat Server Access</title></head><body background=\"/background.jpg\">"
 "<h3 align=center>BPQ32 Chat Server %s Access</h3>"
 "<h3 align=center>Please enter Callsign and Password to access the Chat Server</h3>"
 "<form method=post action=/Chat/Signon?Chat>"
@@ -295,7 +309,9 @@ static char MailLostSession[] = "<html><body>"
 "<input name=Submit value=Restart type=submit class='btn'> <input type=submit class='btn' value=Exit name=Cancel><br></form>";
 
 
-static char ConfigEditPage[] = "<html><head><meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"content-type\">"
+static char ConfigEditPage[] = "<html><head>"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+"<meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"content-type\">"
 "<title>Edit Config</title></head><body background=/background.jpg>"
 "<form style=\"font-family: monospace;  text-align: center;\"method=post action=CFGSave?%s>"
 "<textarea cols=100 rows=25 name=Msg>%s</textarea><br><br>"
@@ -1287,7 +1303,9 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	struct TNCINFO * TNC;
 	int top = 0, left = 0;
 
-	char NodeMenuHeader[] = "<html id=body><head><title>%s's BPQ32 Web Server</title>"
+	char NodeMenuHeader[] = "<html id=body><head>"
+	"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+	"<title>%s's BPQ32 Web Server</title>"
 	"<style type=\"text/css\">"
 	// The container <div> - needed to position the dropdown content
 	".dropdown {position: relative; display: inline-block;}"

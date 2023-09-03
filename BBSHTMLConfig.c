@@ -129,7 +129,8 @@ static char BusyError[] = "<p align=center>Sorry, No sessions available - please
 
 extern char WebMailSignon[];
 
-char MailSignon[] = "<html><head><title>BPQ32 Mail Server Access</title></head><body background=\"/background.jpg\">"
+char MailSignon[] = "<html><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+  "<head><title>BPQ32 Mail Server Access</title></head><body background=\"/background.jpg\">"
 	"<h3 align=center>BPQ32 Mail Server %s Access</h3>"
 	"<h3 align=center>Please enter Callsign and Password to access the BBS</h3>"
 	"<form method=post action=/Mail/Signon?Mail>"
@@ -139,7 +140,8 @@ char MailSignon[] = "<html><head><title>BPQ32 Mail Server Access</title></head><
 	"<p align=center><input type=submit class='btn' value=Submit /><input type=submit class='btn' value=Cancel name=Cancel /></form>";
 
 
-char MailPage[] = "<html><head><title>%s's BBS Web Server</title>"
+char MailPage[] = "<html><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+  "<head><title>%s's BBS Web Server</title>"
 	"<style type=\"text/css\">"
 	"input.btn:active {background:black;color:white;} "
 	"submit.btn:active {background:black;color:white;} "
@@ -160,6 +162,7 @@ char MailPage[] = "<html><head><title>%s's BBS Web Server</title>"
 
 char RefreshMainPage[] = "<html><head>"
 	"<meta http-equiv=refresh content=10>"
+	"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 	"<style type=\"text/css\">"
 	"input.btn:active {background:black;color:white;} "
 	"submit.btn:active {background:black;color:white;} "
@@ -278,6 +281,7 @@ char FWDUpdate[] =
 
 static char MailDetailPage[] = 
 "<html><head><meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"content-type\">"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 "<title>MsgEdit</title></head><body><h4>Message %d</h4>"
 "<form style=\"font-family: monospace;\" method=post action=/Mail/Msg?%s name=Msgs>"
 "From&nbsp; <input style=\"font-family: monospace;\" size=10 name=From value=%s> Sent&nbsp;&nbsp;&nbsp;"
@@ -336,6 +340,7 @@ char Welcome[] = "<form style=\"font-family: monospace; text-align: center;\""
 "<input name=Save value=Save type=submit class='btn'> <inputcname=Cancel value=Cancel type=submit class='btn'></form>";
 
 static char MsgEditPage[] = "<html><head><meta content=\"text/html; charset=ISO-8859-1\" http-equiv=\"content-type\">"
+"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 "<title></title></head><body>"
 "<form style=\"font-family: monospace;  text-align: center;\"method=post action=EMSave?%s>"
 "<textarea cols=90 rows=33 name=Msg>%s</textarea><br><br>"

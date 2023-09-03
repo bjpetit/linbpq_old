@@ -120,7 +120,10 @@ static char BusyError[] = "<p align=center>Sorry, No sessions available - please
 
 extern char MailSignon[];
 
-char WebMailSignon[] = "<html><head><title>BPQ32 Mail Server Access</title></head><body background='/background.jpg'>"
+char WebMailSignon[] = "<html>"
+	"<head><title>BPQ32 Mail Server Access</title>"
+	"<meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head>"
+	"<body background='/background.jpg'>"
 	"<h3 align=center>BPQ32 Mail Server %s Access</h3>"
 	"<h3 align=center>Please enter Callsign and Password to access WebMail</h3>"
 	"<form method=post action=/WebMail/Signon>"
@@ -129,7 +132,9 @@ char WebMailSignon[] = "<html><head><title>BPQ32 Mail Server Access</title></hea
 	"<tr><td>Password</td><td><input type=password name=password tabindex=2 size=20 maxlength=50 /></td></tr></table>"  
 	"<p align=center><input type=submit class='btn' value=Submit /><input type=submit class='btn' value=Cancel name=Cancel /></form>";
 
-static char MsgInputPage[] = "<html><head><meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">"
+static char MsgInputPage[] = "<html>"
+	"<head><meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">"
+  "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 	"<title></title><script src='/WebMail/webscript.js'></script>"
 	"<style type=\"text/css\">"
 	"input.btn:active {background:black;color:white;} "
@@ -156,6 +161,7 @@ static char MsgInputPage[] = "<html><head><meta content=\"text/html; charset=UTF
 	"<input name=Send value=Send type=submit class='btn'> <input name=Cancel value=Cancel type=submit class='btn'></div></form>";
 
 static char CheckFormMsgPage[] = "<html><head><meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\">"
+	"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 	"<title></title><script src='/WebMail/webscript.js'></script></head>"
 	"<body background=/background.jpg onload='initialize(210)' onresize='initialize(210)'>"
 	"<h3 align=center>Webmail Forms Interface - Check Message</h3>"
@@ -1807,6 +1813,7 @@ void ProcessWebMailMessage(struct HTTPConnectionInfo * Session, char * Key, BOOL
 			"<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\"> \r\n"
 			"<head> \r\n"
 			"<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/> \r\n"
+			"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/> \r\n"
 			"<style type=\"text/css\">\r\n"
 			"pre {margin-left: 4px;white-space: pre} \r\n"
 			"#main{width:700px;position:absolute;left:0px;border:2px solid;background-color: #ffffff;}\r\n"
