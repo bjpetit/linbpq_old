@@ -690,8 +690,8 @@ typedef struct WPDBASE{	/* 194 bytes */
 	unsigned char Type;
 	unsigned char changed;
 	unsigned short seen;
-	long long last_modif;
-	long long last_seen;
+	time_t last_modif;
+	time_t last_seen;
 	char first_homebbs[41];
 	char secnd_homebbs[41];
 	char first_zip[9];
