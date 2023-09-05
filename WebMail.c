@@ -21,6 +21,7 @@ along with LinBPQ/BPQ32.  If not, see http://www.gnu.org/licenses
 
 #include "CHeaders.h"
 #include "bpqmail.h"
+#include "HTMLCommon.h"
 
 #define MAIL
 #include "httpconnectioninfo.h"
@@ -1814,13 +1815,16 @@ void ProcessWebMailMessage(struct HTTPConnectionInfo * Session, char * Key, BOOL
 			"<head> \r\n"
 			"<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/> \r\n"
 			"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/> \r\n"
+			"<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"
 			"<style type=\"text/css\">\r\n"
 			"pre {margin-left: 4px;white-space: pre} \r\n"
 			"#main{width:700px;position:absolute;left:0px;border:2px solid;background-color: #ffffff;}\r\n"
+			"%s"
 			"</style>\r\n"
 			"<script src=\"/WebMail/webscript.js\"></script>\r\n"
 
 			"<script type = \"text/javascript\">\r\n"
+			"%s"
 			"var ws;"
 			"function Init()"
 			"{"
@@ -1871,23 +1875,24 @@ void ProcessWebMailMessage(struct HTTPConnectionInfo * Session, char * Key, BOOL
 
 			"<body background=/background.jpg onload=Init() onresize=initialize(120)>\r\n"
 			"<h3 align=center> %s Webmail Interface - User %s - Message List</h3>\r\n"
-			"<table align=center border=1 cellpadding=2 bgcolor=white><tr>\r\n"
+			"<div><ul class=\"navbar\" id=\"navBar\">\r\n"
 			"\r\n"
-			"<td><a href=/WebMail/WMB?%s>Bulls</a></td>\r\n"
-			"<td><a href=/WebMail/WMP?%s>Personal</a></td>\r\n"
-			"<td><a href=/WebMail/WMT?%s>NTS</a></td>\r\n"
-			"<td><a href=/WebMail/WMALL?%s>All Types</a></td>\r\n"
-			"<td><a href=/WebMail/WMMine?%s>Mine</a></td>\r\n"
-			"<td><a href=/WebMail/WMAuto?%s>Auto Refresh</a></td>\r\n"
-			"<td><a href=\"#\" onclick=\"newmsg('%s'); return false;\">Send Message</a></td>\r\n"
-			"<td><a href=/WebMail/WMLogout?%s>Logout</a></td>\r\n"
-			"<td><a href=/>Node Menu</a></td></tr></table>\r\n"
+			"<a href=/WebMail/WMB?%s>Bulls</a>\r\n"
+			"<a href=/WebMail/WMP?%s>Personal</a>\r\n"
+			"<a href=/WebMail/WMT?%s>NTS</a>\r\n"
+			"<a href=/WebMail/WMALL?%s>All Types</a>\r\n"
+			"<a href=/WebMail/WMMine?%s>Mine</a>\r\n"
+			"<a href=/WebMail/WMAuto?%s>Auto Refresh</a>\r\n"
+			"<a href=\"#\" onclick=\"newmsg('%s'); return false;\">Send Message</a>\r\n"
+			"<a href=/WebMail/WMLogout?%s>Logout</a>\r\n"
+			"<a href=/>Node Menu</a></div>\r\n"
+			"%s"
 			"<br>\r\n"
 
 			"<div align=left id=main style=overflow:scroll;>Waiting for data...</div>\r\n"
 			"</body></html>\r\n";
 
-		sprintf(Page, WebSockPage, Key, Key ,BBSName, Session->User->Call, Key, Key, Key, Key, Key, Key, Key, Key);
+		sprintf(Page, WebSockPage, NavBarStyleSheet, NavBarScript, Key, Key ,BBSName, Session->User->Call, Key, Key, Key, Key, Key, Key, Key, Key, NavBarElement);
 
 		*RLen = sprintf(Reply, "%s", Page);
 		return;
@@ -3521,16 +3526,19 @@ int DisplayWebForm(struct HTTPConnectionInfo * Session, struct MsgInfo * Msg, ch
 				"{"
 				"var param = \"toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,titlebar=yes,toobar=yes\";"
 				"window.open(\"/WebMail/Reply/\" + Num + \"?\" + Key,\"_self\",param);"
-				"}</script>"
+				"}"
+				"%s"
+				"</script>"
 				"<h3 align=center> %s Webmail Interface - User %s - Message %d</h3>"
-				"<table align=center border=1 cellpadding=2 bgcolor=white><tr>"
-				"<td><a href=\"#\" onclick=\"Reply('%d' ,'%s'); return false;\">Reply</a></td>"
-				"<td><a href=/WebMail/WMDel/%d?%s>Kill Message</a></td>"
-				"<td><a href=/WebMail/DisplayText?%s&%d>Display as Text</a></td>"
-				"<td><a href=/WebMail/WMNext?%s>Next</a></td>"
-				"<td><a href=/WebMail/WMPrev?%s>Previous</a></td>"
-				"<td><a href=/WebMail/WMSame?%s>Back to List</a></td>"
-				"</tr></table>", BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key,  Key, Msg->number, Key, Key, Key);
+				"<div><ul class=\"navbar\" id=\"navBar\">\r\n"
+				"<a href=\"#\" onclick=\"Reply('%d' ,'%s'); return false;\">Reply</a>"
+				"<a href=/WebMail/WMDel/%d?%s>Kill Message</a>"
+				"<a href=/WebMail/DisplayText?%s&%d>Display as Text</a>"
+				"<a href=/WebMail/WMNext?%s>Next</a>"
+				"<a href=/WebMail/WMPrev?%s>Previous</a>"
+				"<a href=/WebMail/WMSame?%s>Back to List</a>"
+				"%s"
+				"</div>", NavBarScript, User->Call, Msg->number, Msg->number, Key, Msg->number, Key,  Key, Msg->number, Key, Key, Key, NavBarElement);
 
 			strcat(temp, ptr);
 

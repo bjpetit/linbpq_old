@@ -31,6 +31,7 @@ along with LinBPQ/BPQ32.  If not, see http://www.gnu.org/licenses
 #include "time.h"
 #include "bpq32.h"
 #include "telnetserver.h"
+#include "HTMLCommon.h"
 
 // This is needed to link with a lib built from source
 
@@ -319,6 +320,31 @@ static char ConfigEditPage[] = "<html><head>"
 
 static char EXCEPTMSG[80] = "";
 
+#if DELETE_ME
+static char StyleSheet[] =
+"body { margin: 0; font-family: Arial, Helvetica, sans-serif; }"
+".navbar { overflow: hidden; background-color: white; }"
+".navbar a { float: left; display: block; color: black; text-align: center; "
+"padding: 10px 12px; text-decoration: none; font-size: 14px; }"
+".navbar a:hover, .subnav:hover .subnavbtn { background-color: #ddd; color: black; }"
+".navbar a.active { background-color: #04AA6D; color: white; }"
+".navbar .icon { display: none; }"
+".subnav { overflow: hidden; background-color: white; }"
+".subnav .subnavbtn { font-size: inherit; border: none; outline: none; color: inherit; "
+"padding: 10px 12px; background-color: inherit; font-family: inherit; margin: 0; }"
+".subnav-content { display: none; position: absolute; left: 0; background-color: inherit; width: 100%; z-index: 1; }"
+".subnav-content a { float: left; color: inherit; text-decoration: none;}"
+".subnav-content a:hover { background-color: #eee; color: black; }"
+".subnav:hover .subnav-content { display: block; }"
+"@media screen and (max-width: 600px) { .navbar a:not(:first-child) {display: none;}"
+".navbar a.icon { float: right; display: block; } }"
+"@media screen and (max-width: 600px) { .navbar.responsive {position: relative;}"
+".navbar.responsive .icon { position: absolute; right: 0; top: 0; }"
+".navbar.responsive a { float: none; display: block; text-align: left; }"
+".subnav.responsive a { float: none; display: block; text-align: left;  }"
+".subnav-content.responsive a { float: none; display: block; text-align: left;  }}"
+;
+#endif
 
 void UndoTransparency(char * input)
 {
@@ -1306,20 +1332,9 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	char NodeMenuHeader[] = "<html id=body><head>"
 	"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
 	"<title>%s's BPQ32 Web Server</title>"
+	"<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"
 	"<style type=\"text/css\">"
-	// The container <div> - needed to position the dropdown content
-	".dropdown {position: relative; display: inline-block;}"
-	// Dropdown Content (Hidden by Default)
-	".dropdown-content {display: none; position: absolute; left: -100px; background-color: #f1f1f1;"
-	" min-width: 120px; border: 1px solid; padding: 4px; z-index: 1;}"
-	// Links inside the dropdown
-	".dropdown-content a {color: black; padding: 2px 2px; display: block;}"
-	// Change color of dropdown links on hover 
-	".dropdown-content a:hover {background-color: #ddd}"
-	// Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button)
-	".show {display:block;}"
-	"input.btn:active {background:black;color:white;} "
-	"submit.btn:active {background:black;color:white;} "
+	"%s"
 	"</style>"
 
 	"<script>\r\n"
@@ -1351,6 +1366,8 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 		"menubar=no, scrollbars=no, resizable=no, titlebar=no, toobar=no, \" + ww + xx + yy + zz;"
 		"window.open(URL,\"_blank\",param);"
 		"}\r\n"
+
+	"%s"
 	
 	"function open_win(){";
 
@@ -1358,47 +1375,44 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 
 	char NodeMenuRest[] = "}</script></head>"
 		"<body id=body background=\"/background.jpg\"><h1 align=center>BPQ32 Node %s</h1><P>"
-		"<P align=center><table border=1 cellpadding=2 bgcolor=white><tr>"
-		"<td><a href=/Node/Routes.html>Routes</a></td>"
-		"<td><a href=/Node/Nodes.html>Nodes</a></td>"
-		"<td><a href=/Node/Ports.html>Ports</a></td>"
-		"<td><a href=/Node/Links.html>Links</a></td>"
-		"<td><a href=/Node/Users.html>Users</a></td>"
-		"<td><a href=/Node/Stats.html>Stats</a></td>"
-		"<td><a href=/Node/Terminal.html>Terminal</a></td>%s%s%s%s%s%s";
+		"<P align=center>"
+		"<div><ul class=\"navbar\" id=\"navBar\">"
+		"<a href=/Node/Routes.html>Routes</a>"
+		"<a href=/Node/Nodes.html>Nodes</a>"
+		"<a href=/Node/Ports.html>Ports</a>"
+		"<a href=/Node/Links.html>Links</a>"
+		"<a href=/Node/Users.html>Users</a>"
+		"<a href=/Node/Stats.html>Stats</a>"
+		"<a href=/Node/Terminal.html>Terminal</a>%s%s%s%s%s%s%s"
+		"</div>";
 
-	char DriverBit[] = "<td><a href=\"javascript:open_win();\">Driver Windows</a></td>"
-		"<td><a href=javascript:dev_win(\"/Node/Streams\",820,700,200,200);>Stream Status</a></td>";
+	char DriverBit[] = "<a href=\"javascript:open_win();\">Driver Windows</a>"
+		"<a href=javascript:dev_win(\"/Node/Streams\",820,700,200,200);>Stream Status</a>";
 
-	char APRSBit[] = "<td><a href=../aprs>APRS Pages</a></td>";
+	char APRSBit[] = "<a href=../aprs>APRS Pages</a>";
 
-	char MailBit[] = "<td><a href=../Mail/Header>Mail Mgmt</a></td>"
-		"<td><a href=/Webmail>WebMail</a></td>";
+	char MailBit[] = "<a href=../Mail/Header>Mail Mgmt</a>"
+		"<a href=/Webmail>WebMail</a>";
 
-	char ChatBit[] = "<td><a href=../Chat/Header>Chat Mgmt</a></td>";
-	char SigninBit[] = "<td><a href=/Node/Signon.html>SYSOP Signin</a></td>";
+	char ChatBit[] = "<a href=../Chat/Header>Chat Mgmt</a>";
+	char SigninBit[] = "<a href=/Node/Signon.html>SYSOP Signin</a>";
+
+
 
 	char NodeTail[] = 
-		"<td><a href=/Node/EditCfg.html>Edit Config</a></td>"
-		"<td><div onmouseover=myShow() class='dropdown'>"
-		"<button class=\"dropbtn\">View Logs</button>"
-		"<div id=\"myDropdown\" class=\"dropdown-content\">"
-		"<form id = doDate form action='/node/ShowLog.html'><label>"
-		"Select Date: <input type='date' name='date' id=e>"
-		"<script>"
-		"document.getElementById('e').value = new Date().toISOString().substring(0, 10);"
-		"</script></label>"
-		"<input type=submit class='btn' name='BBS' value='BBS Log'></br>"
-		"<input type=submit class='btn' name='Debug' value='BBS Debug Log'></br>"
-		"<input type=submit class='btn' name='Telnet' value='Telnet Log'></br>"
-		"<input type=submit class='btn' name='CMS' value='CMS Log'></br>"
-		"<input type=submit class='btn' name='Chat' value='Chat Log'></br>"
-		"</form></div>"
-		"</div>"		
-		"</td></tr></table>";
+		"<div class=\"subnav\">"
+		"<button class=\"subnavbtn\">Sysop Tools<i class=\"fa fa-caret-down\"></i></button>"
+		"<div class=\"subnav-content\">"
+		"<a href=/Node/EditCfg.html>Edit Config</a>"
+		"<a href=/Node/EditCfg.html>Show BBS Log</a>"
+		"<a href=/Node/EditCfg.html>Show Debug Log</a>"
+		"<a href=/Node/EditCfg.html>Show Telnet Log</a>"
+		"<a href=/Node/EditCfg.html>Show CMS Log</a>"
+		"<a href=/Node/EditCfg.html>Show Chat Log</a>"
+		"</div></div>";
 
 
-	Len = sprintf(Buff, NodeMenuHeader, Mycall);
+	Len = sprintf(Buff, NodeMenuHeader, Mycall, NavBarStyleSheet, NavBarScript);
 
 	for (i=1; i <= MAXBPQPORTS; i++)
 	{
@@ -1417,7 +1431,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	Len += sprintf(&Buff[Len], NodeMenuRest, Mycall,
 		DriverBit,
 		(APRSWeb)?APRSBit:"",
-		(IncludesMail)?MailBit:"", (IncludesChat)?ChatBit:"", (LOCAL)?"":SigninBit, NodeTail);
+		(IncludesMail)?MailBit:"", (IncludesChat)?ChatBit:"", (LOCAL)?"":SigninBit, NodeTail, NavBarElement);
 
 	return Len;
 }
