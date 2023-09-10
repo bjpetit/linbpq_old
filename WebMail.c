@@ -961,7 +961,7 @@ int SendWebMailHeaderEx(char * Reply, char * Key, struct HTTPConnectionInfo * Se
 	if (WebMailTemplate == NULL)
 		WebMailTemplate = GetTemplateFromFile(6, "WebMailPage.txt");
 
-	return sprintf(Reply, WebMailTemplate, BBSName, User->Call, Key, Key, Key, Key, Key, Key, Key, Key, Messages);
+	return sprintf(Reply, WebMailTemplate, NavBarStyleSheet, NavBarScript BBSName, User->Call, Key, Key, Key, Key, Key, Key, Key, Key, NavBarElement, Messages);
 }
 
 int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Number, BOOL DisplayHTML)
@@ -1198,7 +1198,7 @@ int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Nu
 						}
 					}
 				}
-				return sprintf(Reply, WebMailMsgTemplate, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, DisplayStyle, Message, DisplayStyle);
+				return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, NavBarScript, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, NavBarElement, Message, DisplayStyle);
 			}
 
 			// Remove B2 Headers (up to the File: Line)
@@ -1308,7 +1308,7 @@ int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Nu
 
 
 
-	return sprintf(Reply, WebMailMsgTemplate, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, DisplayStyle, Message, DisplayStyle);
+	return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, NavBarScript, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, NavBarElement, DisplayStyle, Message, DisplayStyle);
 }
 
 int KillWebMailMessage(char * Reply, char * Key, struct UserInfo * User, int Number)
@@ -1334,7 +1334,7 @@ int KillWebMailMessage(char * Reply, char * Key, struct UserInfo * User, int Num
 	sprintf(Message, "Not your message\r");
 
 returnit:
-	return sprintf(Reply, WebMailMsgTemplate, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, "", Key, Key, Key, "div", Message, "div");
+	return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, NavBarScript, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, "", Key, Key, Key, NavBarElement, "div", Message, "div");
 }
 
 void freeKeys(KeyValues * Keys)
@@ -3172,7 +3172,7 @@ int	ReturnRawMessage(struct UserInfo * User, struct MsgInfo * Msg, char * Key, c
 
 	sprintf(ErrorMsg, ErrorString, RawMessage);
 
-	len = sprintf(Reply, WebMailMsgTemplate, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, "textarea", ErrorMsg, "textarea");
+	len = sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, NavBarScript, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, NavBarElement, "textarea", ErrorMsg, "textarea");
 	free(ErrorMsg);
 	return len;
 }
