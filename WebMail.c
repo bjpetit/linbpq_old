@@ -1885,9 +1885,9 @@ void ProcessWebMailMessage(struct HTTPConnectionInfo * Session, char * Key, BOOL
 			"<a href=/WebMail/WMAuto?%s>Auto Refresh</a>\r\n"
 			"<a href=\"#\" onclick=\"newmsg('%s'); return false;\">Send Message</a>\r\n"
 			"<a href=/WebMail/WMLogout?%s>Logout</a>\r\n"
-			"<a href=/>Node Menu</a></div>\r\n"
-			"%s"
-			"<br>\r\n"
+			"<a href=/>Node Menu</a>\r\n"
+			"%s\r\n"
+			"</div><br>\r\n"
 
 			"<div align=left id=main style=overflow:scroll;>Waiting for data...</div>\r\n"
 			"</body></html>\r\n";
