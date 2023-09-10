@@ -961,7 +961,7 @@ int SendWebMailHeaderEx(char * Reply, char * Key, struct HTTPConnectionInfo * Se
 	if (WebMailTemplate == NULL)
 		WebMailTemplate = GetTemplateFromFile(6, "WebMailPage.txt");
 
-	return sprintf(Reply, WebMailTemplate, NavBarStyleSheet, NavBarScript BBSName, User->Call, Key, Key, Key, Key, Key, Key, Key, Key, NavBarElement, Messages);
+	return sprintf(Reply, WebMailTemplate, NavBarStyleSheet, NavBarScript, BBSName, User->Call, Key, Key, Key, Key, Key, Key, Key, Key, NavBarElement, Messages);
 }
 
 int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Number, BOOL DisplayHTML)
