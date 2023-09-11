@@ -1341,8 +1341,6 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 		"menubar=no, scrollbars=no, resizable=no, titlebar=no, toobar=no, \" + ww + xx + yy + zz;"
 		"window.open(URL,\"_blank\",param);"
 		"}\r\n"
-
-	"%s"
 	
 	"function open_win(){";
 
@@ -1366,16 +1364,16 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 		"<li><a href=/Node/SysopTools.html>SysopTools</a></li>"
 		"</ul></nav></header>";
 
-	char DriverBit[] = "<a href=\"javascript:open_win();\">Driver Windows</a>"
-		"<a href=javascript:dev_win(\"/Node/Streams\",820,700,200,200);>Stream Status</a>";
+	char DriverBit[] = "<li><a href=\"javascript:open_win();\">Driver Windows</a></li>"
+		"<li><a href=javascript:dev_win(\"/Node/Streams\",820,700,200,200);>Stream Status</a></li>";
 
-	char APRSBit[] = "<a href=../aprs>APRS Pages</a>";
+	char APRSBit[] = "<li><a href=../aprs>APRS Pages</a></li>";
 
-	char MailBit[] = "<a href=../Mail/Header>Mail Mgmt</a>"
-		"<a href=/Webmail>WebMail</a>";
+	char MailBit[] = "<li><a href=../Mail/Header>Mail Mgmt</a></li>"
+		"<li><a href=/Webmail>WebMail</a></li>";
 
-	char ChatBit[] = "<a href=../Chat/Header>Chat Mgmt</a>";
-	char SigninBit[] = "<a href=/Node/Signon.html>SYSOP Signin</a>";
+	char ChatBit[] = "<li><a href=../Chat/Header>Chat Mgmt</a></li>";
+	char SigninBit[] = "<li><a href=/Node/Signon.html>SYSOP Signin</a></li>";
 
 
 	Len = sprintf(Buff, NodeMenuHeader, Mycall, NavBarStyleSheet);
@@ -1397,7 +1395,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	Len += sprintf(&Buff[Len], NodeMenuRest, Mycall,
 		DriverBit,
 		(APRSWeb)?APRSBit:"",
-		(IncludesMail)?MailBit:"", (IncludesChat)?ChatBit:"");
+		(IncludesMail)?MailBit:"", (IncludesChat)?ChatBit:"", (LOCAL)?"":SigninBit);
 
 	return Len;
 }
