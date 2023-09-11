@@ -1198,7 +1198,7 @@ int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Nu
 						}
 					}
 				}
-				return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, Message, DisplayStyle);
+				return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, DisplayStyle, Message, DisplayStyle);
 			}
 
 			// Remove B2 Headers (up to the File: Line)
