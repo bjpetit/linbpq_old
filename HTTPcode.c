@@ -320,32 +320,6 @@ static char ConfigEditPage[] = "<html><head>"
 
 static char EXCEPTMSG[80] = "";
 
-#if DELETE_ME
-static char StyleSheet[] =
-"body { margin: 0; font-family: Arial, Helvetica, sans-serif; }"
-".navbar { overflow: hidden; background-color: white; }"
-".navbar a { float: left; display: block; color: black; text-align: center; "
-"padding: 10px 12px; text-decoration: none; font-size: 14px; }"
-".navbar a:hover, .subnav:hover .subnavbtn { background-color: #ddd; color: black; }"
-".navbar a.active { background-color: #04AA6D; color: white; }"
-".navbar .icon { display: none; }"
-".subnav { overflow: hidden; background-color: white; }"
-".subnav .subnavbtn { font-size: inherit; border: none; outline: none; color: inherit; "
-"padding: 10px 12px; background-color: inherit; font-family: inherit; margin: 0; }"
-".subnav-content { display: none; position: absolute; left: 0; background-color: inherit; width: 100%; z-index: 1; }"
-".subnav-content a { float: left; color: inherit; text-decoration: none;}"
-".subnav-content a:hover { background-color: #eee; color: black; }"
-".subnav:hover .subnav-content { display: block; }"
-"@media screen and (max-width: 600px) { .navbar a:not(:first-child) {display: none;}"
-".navbar a.icon { float: right; display: block; } }"
-"@media screen and (max-width: 600px) { .navbar.responsive {position: relative;}"
-".navbar.responsive .icon { position: absolute; right: 0; top: 0; }"
-".navbar.responsive a { float: none; display: block; text-align: left; }"
-".subnav.responsive a { float: none; display: block; text-align: left;  }"
-".subnav-content.responsive a { float: none; display: block; text-align: left;  }}"
-;
-#endif
-
 void UndoTransparency(char * input)
 {
 	char * ptr1, * ptr2;
@@ -1331,8 +1305,9 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 
 	char NodeMenuHeader[] = "<html id=body><head>"
 	"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>"
+	"<meta charset=\"UTF-8\">"
+  "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">"
 	"<title>%s's BPQ32 Web Server</title>"
-	"<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">"
 	"<style type=\"text/css\">"
 	"%s"
 	"</style>"
@@ -1374,17 +1349,22 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	char NodeMenuLine[] = "dev_win(\"/Node/Port?%d\",%d,%d,%d,%d);";
 
 	char NodeMenuRest[] = "}</script></head>"
-		"<body id=body background=\"/background.jpg\"><h1 align=center>BPQ32 Node %s</h1><P>"
-		"<P align=center>"
-		"<div><ul class=\"navbar\" id=\"navBar\">"
-		"<a href=/Node/Routes.html>Routes</a>"
-		"<a href=/Node/Nodes.html>Nodes</a>"
-		"<a href=/Node/Ports.html>Ports</a>"
-		"<a href=/Node/Links.html>Links</a>"
-		"<a href=/Node/Users.html>Users</a>"
-		"<a href=/Node/Stats.html>Stats</a>"
-		"<a href=/Node/Terminal.html>Terminal</a>%s%s%s%s%s%s%s"
-		"</div>";
+		"<body id=body background=\"/background.jpg\">"
+		"<header class=\"header\">"
+		"<a href=\"#\" class=\"logo\">BPQ32 Node %s</a>"
+		"<input class=\"side-menu\" type=\"checkbox\" id=\"side-menu\"/>"
+		"<label class=\"hamb\" for=\"side-menu\"><span class=\"hamb-line\"></span></label>"
+		"<nav class=\"nav\">"
+		"<ul class=\"menu\">"
+		"<li><a href=/Node/Routes.html>Routes</a></li>"
+		"<li><a href=/Node/Nodes.html>Nodes</a></li>"
+		"<li><a href=/Node/Ports.html>Ports</a></li>"
+		"<li><a href=/Node/Links.html>Links</a></li>"
+		"<li><a href=/Node/Users.html>Users</a></li>"
+		"<li><a href=/Node/Stats.html>Stats</a></li>"
+		"<li><a href=/Node/Terminal.html>Terminal</a></li>%s%s%s%s%s"
+		"<li><a href=/Node/SysopTools.html>SysopTools</a></li>"
+		"</ul></nav></header>";
 
 	char DriverBit[] = "<a href=\"javascript:open_win();\">Driver Windows</a>"
 		"<a href=javascript:dev_win(\"/Node/Streams\",820,700,200,200);>Stream Status</a>";
@@ -1398,21 +1378,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	char SigninBit[] = "<a href=/Node/Signon.html>SYSOP Signin</a>";
 
 
-
-	char NodeTail[] = 
-		"<div class=\"subnav\">"
-		"<button class=\"subnavbtn\">Sysop Tools<i class=\"fa fa-caret-down\"></i></button>"
-		"<div class=\"subnav-content\">"
-		"<a href=/Node/EditCfg.html>Edit Config</a>"
-		"<a href=/Node/EditCfg.html>Show BBS Log</a>"
-		"<a href=/Node/EditCfg.html>Show Debug Log</a>"
-		"<a href=/Node/EditCfg.html>Show Telnet Log</a>"
-		"<a href=/Node/EditCfg.html>Show CMS Log</a>"
-		"<a href=/Node/EditCfg.html>Show Chat Log</a>"
-		"</div></div>";
-
-
-	Len = sprintf(Buff, NodeMenuHeader, Mycall, NavBarStyleSheet, NavBarScript);
+	Len = sprintf(Buff, NodeMenuHeader, Mycall, NavBarStyleSheet);
 
 	for (i=1; i <= MAXBPQPORTS; i++)
 	{
@@ -1431,7 +1397,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	Len += sprintf(&Buff[Len], NodeMenuRest, Mycall,
 		DriverBit,
 		(APRSWeb)?APRSBit:"",
-		(IncludesMail)?MailBit:"", (IncludesChat)?ChatBit:"", (LOCAL)?"":SigninBit, NodeTail, NavBarElement);
+		(IncludesMail)?MailBit:"", (IncludesChat)?ChatBit:"");
 
 	return Len;
 }
