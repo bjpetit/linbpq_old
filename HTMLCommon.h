@@ -126,7 +126,7 @@ static char NavBarStyleSheet[] =
     ".menu a:hover{\n"
         "background-color: transparent;\n"
         "color: var(--gray);\n"
-    "}"\n
+    "}\n"
 
     ".hamb{\n"
         "display: none;\n"
