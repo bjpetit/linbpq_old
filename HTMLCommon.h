@@ -9,7 +9,7 @@ static char NavBarStyleSheet[] =
   "}"
   "body{"
     "background-color: var(--white);"
-    "font-family: "Poppins", sans-serif;"
+    "font-family: \"Poppins\", sans-serif;"
   "}"
   "a{"
     "text-decoration: none;"
