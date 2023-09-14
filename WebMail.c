@@ -1198,7 +1198,7 @@ int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Nu
 						}
 					}
 				}
-				return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, DisplayStyle, Message, DisplayStyle);
+				return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, User->Call, Msg->number, DisplayStyle, Message, DisplayStyle);
 			}
 
 			// Remove B2 Headers (up to the File: Line)
@@ -1308,7 +1308,7 @@ int ViewWebMailMessage(struct HTTPConnectionInfo * Session, char * Reply, int Nu
 
 
 
-	return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, DisplayStyle, Message, DisplayStyle);
+	return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, User->Call, Msg->number, DisplayStyle, Message, DisplayStyle);
 }
 
 int KillWebMailMessage(char * Reply, char * Key, struct UserInfo * User, int Number)
@@ -1334,7 +1334,7 @@ int KillWebMailMessage(char * Reply, char * Key, struct UserInfo * User, int Num
 	sprintf(Message, "Not your message\r");
 
 returnit:
-	return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, "", Key, Key, Key, "div", Message, "div");
+	return sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, Msg->number, Key, Msg->number, Key, "", Key, Key, Key, User->Call, Msg->number, "div", Message, "div");
 }
 
 void freeKeys(KeyValues * Keys)
@@ -3172,7 +3172,7 @@ int	ReturnRawMessage(struct UserInfo * User, struct MsgInfo * Msg, char * Key, c
 
 	sprintf(ErrorMsg, ErrorString, RawMessage);
 
-	len = sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, User->Call, Msg->number, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, "textarea", ErrorMsg, "textarea");
+	len = sprintf(Reply, WebMailMsgTemplate, NavBarStyleSheet, BBSName, Msg->number, Key, Msg->number, Key, DownLoad, Key, Key, Key, User->Call, Msg->number, "textarea", ErrorMsg, "textarea");
 	free(ErrorMsg);
 	return len;
 }

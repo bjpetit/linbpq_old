@@ -59,7 +59,7 @@ char * WebMailMsgtxt()
 		"</head>\r\n"
 		"<body background=/background.jpg onload=initialize(125) onresize=initialize(125)>"
     "<header class=\"header\">"
-    "<a href=\"#\" class=\"logo\">WebMail</a>"
+    "<a href=\"#\" class=\"logo\">%s WebMail</a>"
 		"<input class=\"side-menu\" type=\"checkbox\" id=\"side-menu\"/>"
     "<label class=\"hamb\" for=\"side-menu\"><span class=\"hamb-line\"></span></label>"
 		"<nav class=\"nav\">"
@@ -72,7 +72,7 @@ char * WebMailMsgtxt()
 		"  <li><a href=/WebMail/WMSame?%s>Back to List</a></li>"
 		"</ul></nav></header>"
 		"<br>"
-		"<h3 align=center> %s Webmail Interface - User %s - Message %d</h3>"
+		"<h3 align=center>User %s - Message %d</h3>"
 		"<div align=center id=\"main\">"
 		"<%s id=\"txt\" style=\"overflow:auto;\" align=left>%s</%s>"
 		"</div>";
