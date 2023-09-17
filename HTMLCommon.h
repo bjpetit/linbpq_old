@@ -1,12 +1,12 @@
 
 
 static char NavBarStyleSheet[] =
+  /* variables*/
   ":root{\n"
     "--white: #f9f9f9;\n"
     "--black: #36383F;\n"
     "--gray: #85888C;\n"
   "}\n"
-   /* variables*/
   /* Reset */
   "*{\n"
     "margin: 0;\n"
@@ -50,23 +50,23 @@ static char NavBarStyleSheet[] =
     "overflow: hidden;\n"
   "}\n"
   /* Sub nav */
-  ".subnav-content {"
-    "background-color:  var(--white);"
-    "width: 100%;"
-    "z-index: 1;"
-    "padding: 20px 0 ;"
-    "display: none;"
-  "}"
-  ".subnav-content a {"
-    "color: var(--black);"
-    "text-decoration: none;"
-    "padding: 0;"
-    "margin: 10px 0;"
-    "text-align: center;"
-  "}"
-  ".subnav:hover .subnav-content {"
-    "display: block;"
-  "}"
+  ".subnav-content {\n"
+    "background-color: var(--black);\n"
+    "width: 100%;\n"
+    "z-index: 1;\n"
+    "padding: 20px 0 ;\n"
+    "display: none;\n"
+  "}\n"
+  ".subnav-content a {\n"
+    "color: var(--white);\n"
+    "text-decoration: none;\n"
+    "padding: 0;\n"
+    "margin: 10px 0;\n"
+    "text-align: center;\n"
+  "}\n"
+  ".subnav:hover .subnav-content {\n"
+    "display: block;\n"
+  "}\n"
   ".menu a{\n"
     "display: block;\n"
     "padding: 20px;\n"
@@ -85,7 +85,6 @@ static char NavBarStyleSheet[] =
     "padding: 40px 20px;\n"
   "}\n"
   /* Style label tag */
-
   ".hamb-line {\n"
     "background: var(--white);\n"
     "display: block;\n"
