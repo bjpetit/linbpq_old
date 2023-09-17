@@ -40,6 +40,7 @@ along with LinBPQ/BPQ32.  If not, see http://www.gnu.org/licenses
 VOID L2Routine(struct PORTCONTROL * PORT, PMESSAGE Buffer);
 VOID ProcessIframe(struct _LINKTABLE * LINK, PDATAMESSAGE Buffer);
 VOID FindLostBuffers();
+int	KissDecode(UCHAR * inbuff, int len);
 VOID ReadMH();
 void GetPortCTEXT(TRANSPORTENTRY * Session, char * Bufferptr, char * CmdTail, CMDX * CMD);
 int upnpInit();

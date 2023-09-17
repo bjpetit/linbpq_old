@@ -134,7 +134,7 @@ static char NavBarStyleSheet[] =
     "top:0;\n"
   "}\n"
   /* Responsiveness */
-  "@media (min-width: 768px) {\n"
+  "@media (min-width: 1280px) {\n"
     ".nav{\n"
         "max-height: none;\n"
         "top: 0;\n"

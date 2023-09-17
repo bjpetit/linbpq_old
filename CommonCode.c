@@ -913,7 +913,7 @@ BOOL ProcessIncommingConnectEx(struct TNCINFO * TNC, char * Call, int Stream, BO
 	PMSGWITHLEN buffptr;
 	int Totallen = 0;
 	UCHAR * ptr;
-	struct PORTCONTROL * PORT = TNC->PortRecord;
+	struct PORTCONTROL * PORT = TNC->PortRecord->PORTCONTROL;
 	
 
 	// Stop Scanner
