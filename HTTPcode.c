@@ -1355,7 +1355,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 		"<nav class=\"nav\">"
 		"<ul class=\"menu\">"
 		"<li class=\"subnav\">"
-  	"<p class=\"subnavbtn\">Node<i class=\"fa fa-caret-down\"></i></p>"
+  	"<p class=\"subnavbtn\">Node</p>"
   	"<div class=\"subnav-content\">"
 		"<a href=/Node/Routes.html>Routes</a>"
 		"<a href=/Node/Nodes.html>Nodes</a>"
@@ -1368,7 +1368,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 		"</div>"
 		"%s%s%s"
 		"<li class=\"subnav\">"
-  	"<p class=\"subnavbtn\">Sysop<i class=\"fa fa-caret-down\"></i></p>"
+  	"<p class=\"subnavbtn\">Sysop</p>"
   	"<div class=\"subnav-content\">"
 		"%s"
 		"<a href=/Node/SysopTools.html>SysopTools</a>"
@@ -1381,7 +1381,7 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 	char APRSBit[] = "<li><a href=../aprs>APRS Pages</a></li>";
 
 	char MailBit[] = "<li class=\"subnav\">"
-  	"<p class=\"subnavbtn\">Mail<i class=\"fa fa-caret-down\"></i></p>"
+  	"<p class=\"subnavbtn\">Mail</p>"
   	"<div class=\"subnav-content\">"
 		"<a href=/Webmail>WebMail</a>"
 		"<a href=../Mail/Header>Mail Mgmt</a>"
