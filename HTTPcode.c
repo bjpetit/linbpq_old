@@ -1354,14 +1354,25 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 		"<label class=\"hamb\" for=\"side-menu\"><span class=\"hamb-line\"></span></label>"
 		"<nav class=\"nav\">"
 		"<ul class=\"menu\">"
-		"<li><a href=/Node/Routes.html>Routes</a></li>"
-		"<li><a href=/Node/Nodes.html>Nodes</a></li>"
-		"<li><a href=/Node/Ports.html>Ports</a></li>"
-		"<li><a href=/Node/Links.html>Links</a></li>"
-		"<li><a href=/Node/Users.html>Users</a></li>"
-		"<li><a href=/Node/Stats.html>Stats</a></li>"
-		"<li><a href=/Node/Terminal.html>Terminal</a></li>%s%s%s%s%s"
-		"<li><a href=/Node/SysopTools.html>SysopTools</a></li>"
+		"<li class=\"subnav\">"
+  	"<p class=\"subnavbtn\">Node<i class=\"fa fa-caret-down\"></i></p>"
+  	"<div class=\"subnav-content\">"
+		"<a href=/Node/Routes.html>Routes</a>"
+		"<a href=/Node/Nodes.html>Nodes</a>"
+		"<a href=/Node/Ports.html>Ports</a>"
+		"<a href=/Node/Links.html>Links</a>"
+		"<a href=/Node/Users.html>Users</a>"
+		"<a href=/Node/Stats.html>Stats</a>"
+		"<a href=/Node/Terminal.html>Terminal</a>"
+		"%s"
+		"</div>"
+		"%s%s%s"
+		"<li class=\"subnav\">"
+  	"<p class=\"subnavbtn\">Sysop<i class=\"fa fa-caret-down\"></i></p>"
+  	"<div class=\"subnav-content\">"
+		"%s"
+		"<a href=/Node/SysopTools.html>SysopTools</a>"
+		"</div>"
 		"</ul></nav></header>";
 
 	char DriverBit[] = "<li><a href=\"javascript:open_win();\">Driver Windows</a></li>"
@@ -1369,11 +1380,15 @@ int SetupNodeMenu(char * Buff, int LOCAL)
 
 	char APRSBit[] = "<li><a href=../aprs>APRS Pages</a></li>";
 
-	char MailBit[] = "<li><a href=../Mail/Header>Mail Mgmt</a></li>"
-		"<li><a href=/Webmail>WebMail</a></li>";
+	char MailBit[] = "<li class=\"subnav\">"
+  	"<p class=\"subnavbtn\">Mail<i class=\"fa fa-caret-down\"></i></p>"
+  	"<div class=\"subnav-content\">"
+		"<a href=/Webmail>WebMail</a>"
+		"<a href=../Mail/Header>Mail Mgmt</a>"
+		"</div>";
 
 	char ChatBit[] = "<li><a href=../Chat/Header>Chat Mgmt</a></li>";
-	char SigninBit[] = "<li><a href=/Node/Signon.html>SYSOP Signin</a></li>";
+	char SigninBit[] = "<a href=/Node/Signon.html>SYSOP Signin</a>";
 
 
 	Len = sprintf(Buff, NodeMenuHeader, Mycall, NavBarStyleSheet);
