@@ -1824,7 +1824,6 @@ void ProcessWebMailMessage(struct HTTPConnectionInfo * Session, char * Key, BOOL
 			"<script src=\"/WebMail/webscript.js\"></script>\r\n"
 
 			"<script type = \"text/javascript\">\r\n"
-			"%s"
 			"var ws;"
 			"function Init()"
 			"{"
@@ -1874,25 +1873,29 @@ void ProcessWebMailMessage(struct HTTPConnectionInfo * Session, char * Key, BOOL
 			"</head>\r\n"
 
 			"<body background=/background.jpg onload=Init() onresize=initialize(120)>\r\n"
-			"<h3 align=center> %s Webmail Interface - User %s - Message List</h3>\r\n"
-			"<div><ul class=\"navbar\" id=\"navBar\">\r\n"
+			"<header class=\"header\">"
+			"<a href=\"#\" class=\"logo\">BPQ32 %s Webmail</a>"
+			"<input class=\"side-menu\" type=\"checkbox\" id=\"side-menu\"/>"
+			"<label class=\"hamb\" for=\"side-menu\"><span class=\"hamb-line\"></span></label>"
+			"<nav class=\"nav\">"
+			"<ul class=\"menu\">"
 			"\r\n"
-			"<a href=/WebMail/WMB?%s>Bulls</a>\r\n"
-			"<a href=/WebMail/WMP?%s>Personal</a>\r\n"
-			"<a href=/WebMail/WMT?%s>NTS</a>\r\n"
-			"<a href=/WebMail/WMALL?%s>All Types</a>\r\n"
-			"<a href=/WebMail/WMMine?%s>Mine</a>\r\n"
-			"<a href=/WebMail/WMAuto?%s>Auto Refresh</a>\r\n"
-			"<a href=\"#\" onclick=\"newmsg('%s'); return false;\">Send Message</a>\r\n"
-			"<a href=/WebMail/WMLogout?%s>Logout</a>\r\n"
-			"<a href=/>Node Menu</a>\r\n"
-			"%s\r\n"
+			"<li><a href=/WebMail/WMB?%s>Bulls</a></li>\r\n"
+			"<li><a href=/WebMail/WMP?%s>Personal</a></li>\r\n"
+			"<li><a href=/WebMail/WMT?%s>NTS</a></li>\r\n"
+			"<li><a href=/WebMail/WMALL?%s>All Types</a></li>\r\n"
+			"<li><a href=/WebMail/WMMine?%s>Mine</a></li>\r\n"
+			"<li><a href=/WebMail/WMAuto?%s>Auto Refresh</a></li>\r\n"
+			"<li><a href=\"#\" onclick=\"newmsg('%s'); return false;\">Send Message</a></li>\r\n"
+			"<li><a href=/WebMail/WMLogout?%s>Logout</a></li>\r\n"
+			"<li><a href=/>Node Menu</a></li>\r\n"
 			"</div><br>\r\n"
+			"<h3 align=center>User %s - Message List</h3>\r\n"
 
 			"<div align=left id=main style=overflow:scroll;>Waiting for data...</div>\r\n"
 			"</body></html>\r\n";
 
-		sprintf(Page, WebSockPage, NavBarStyleSheet, Key, Key ,BBSName, Session->User->Call, Key, Key, Key, Key, Key, Key, Key, Key);
+		sprintf(Page, WebSockPage, NavBarStyleSheet, Key, Key, BBSName, Key, Key, Key, Key, Key, Key, Key, Key, Session->User->Call);
 
 		*RLen = sprintf(Reply, "%s", Page);
 		return;
@@ -3527,18 +3530,22 @@ int DisplayWebForm(struct HTTPConnectionInfo * Session, struct MsgInfo * Msg, ch
 				"var param = \"toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,titlebar=yes,toobar=yes\";"
 				"window.open(\"/WebMail/Reply/\" + Num + \"?\" + Key,\"_self\",param);"
 				"}"
-				"%s"
 				"</script>"
-				"<h3 align=center> %s Webmail Interface - User %s - Message %d</h3>"
-				"<div><ul class=\"navbar\" id=\"navBar\">\r\n"
+				"<header class=\"header\">"
+				"<a href=\"#\" class=\"logo\">BPQ32 %s Webmail</a>"
+				"<input class=\"side-menu\" type=\"checkbox\" id=\"side-menu\"/>"
+				"<label class=\"hamb\" for=\"side-menu\"><span class=\"hamb-line\"></span></label>"
+				"<nav class=\"nav\">"
+				"<ul class=\"menu\">"
 				"<a href=\"#\" onclick=\"Reply('%d' ,'%s'); return false;\">Reply</a>"
 				"<a href=/WebMail/WMDel/%d?%s>Kill Message</a>"
 				"<a href=/WebMail/DisplayText?%s&%d>Display as Text</a>"
 				"<a href=/WebMail/WMNext?%s>Next</a>"
 				"<a href=/WebMail/WMPrev?%s>Previous</a>"
 				"<a href=/WebMail/WMSame?%s>Back to List</a>"
-				"%s"
-				"</div>", User->Call, Msg->number, Msg->number, Key, Msg->number, Key,  Key, Msg->number, Key, Key, Key);
+				"</div>"
+				"<h3 align=center>User %s - Message %d</h3>",
+				BBSName, Msg->number, Key, Msg->number, Key,  Key, Msg->number, Key, Key, Key, User->Call, Msg->number);
 
 			strcat(temp, ptr);
 
